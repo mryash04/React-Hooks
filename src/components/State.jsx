@@ -11,7 +11,7 @@ const State = () => {
     const counts = state.counts;
     const theme = state.theme;
 
-    console.log(state.count);
+    console.log(state.counts);
 
     const IncrementState = () => {
         setState(prevState => {
