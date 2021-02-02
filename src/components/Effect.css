@@ -1,5 +1,5 @@
 .btn{
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50 !important; /* Green */
     border: none;
     color: white;
     padding: 20px 32px;
