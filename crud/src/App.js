@@ -1,7 +1,12 @@
 import React from "react";
 import './App.css';
 import Navbar from "./components/Navbar";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Error from "./components/Error";
+import User from "./components/User";
 
 function App() {
   return (
@@ -10,12 +15,22 @@ function App() {
         <Switch>
           <Route path="/about">
             <Navbar />
+            <About />
           </Route>
           <Route path="/contact">
             <Navbar />
+            <Contact />
           </Route>
-          <Route path="/">
+          <Route path="/user">
             <Navbar />
+            <User />
+          </Route>
+          <Route exact path="/">
+            <Navbar />
+            <Home />
+          </Route>
+          <Route path="*">
+            <Error />
           </Route>
         </Switch>
       </Router>
