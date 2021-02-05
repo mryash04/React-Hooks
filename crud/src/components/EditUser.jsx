@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from "react-router-dom";
 
-const User = () => {
+const EditUser = () => {
 
     let history = useHistory();
+
+    const { id } = useParams();
+
+    console.log(id);
 
     const [user, setUser] = useState({
         name: "",
@@ -13,6 +17,10 @@ const User = () => {
         website: ""
     })
 
+    useEffect(() => {
+        lodaUsers()
+    }, []);
+
     const handleChange = (event) => {
         setUser({ ...user, [event.target.name]: event.target.value });
         console.log({ ...user });
@@ -21,8 +29,8 @@ const User = () => {
     const handleSubmit = (event) => {
         console.log("button is submitted");
         event.preventDefault();
-        fetch('https://jsonplaceholder.typicode.com/users', {
-            method: 'POST',
+        fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+            method: 'PUT',
             body: JSON.stringify({ user }),
             headers: { 'Content-Type': 'application/json' },
         })
@@ -32,9 +40,14 @@ const User = () => {
         history.push("/");
     }
 
+    const lodaUsers = () => {
+        fetch(`https://jsonplaceholder.typicode.com/users/${id}`).then((apiData) => apiData.json()).
+            then((actualData) => setUser(actualData))
+    }
+
     return (
-        <div className="user container">
-            <h2 className="text-center mt-4">Add User</h2>
+        <div className="edituser container">
+            <h2 className="text-center mt-4">Edit User</h2>
             <form className="mt-5" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input className="form-control form-control-lg" onChange={handleChange} type="text" name="name" value={user.name} placeholder="Enter your name" />
@@ -59,4 +72,4 @@ const User = () => {
     )
 }
 
-export default User;
+export default EditUser;

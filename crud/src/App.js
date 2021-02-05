@@ -7,6 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import User from "./components/User";
+import EditUser from "./components/EditUser";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
           <Route path="/user">
             <Navbar />
             <User />
+          </Route>
+          <Route path="/edit/:id">
+            <Navbar />
+            <EditUser />
           </Route>
           <Route exact path="/">
             <Navbar />
