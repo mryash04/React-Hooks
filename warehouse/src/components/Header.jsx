@@ -2,14 +2,20 @@ import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NavLink} from "react-router-dom";
 import Data from "./Data";
+import {useHistory} from "react-router-dom";
+import Table from "./Table";
 
 const Header = () =>{
 
   const[data, setData] = useState(Data);
 
-  const[search, setSearch] = useState("");
+  const[search, setSearch] = useState(null);
 
   const[res, setRes] = useState([]);
+
+  data.filter((data) =>console.log(data.name));
+
+  const history = useHistory();
 
     return(
         <div className="header">
@@ -20,7 +26,7 @@ const Header = () =>{
   </button>
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav mr-auto">
+    <ul className="navbar-nav ml-auto font-weight-bold">
       <li className="nav-item active">
         <NavLink className="nav-link text-white" to="/">Home <span className="sr-only">(current)</span></NavLink>
       </li>
@@ -28,25 +34,6 @@ const Header = () =>{
         <NavLink className="nav-link text-white" to="/about">About</NavLink>
       </li>
     </ul>
-    <form className="form-inline my-2 my-lg-0">
-      <input className="form-control mr-sm-2" 
-      onChange={e => {
-          const test = data.filter(data => {
-            return (data.toLowerCase().includes(e.target.value.toLowerCase()));
-          });
-          console.log("test: ", test);
-
-          // uncomment line below and teams is logged as I want
-          setData(test);
-          setSearch(e.target.value);
-
-          setRes(test)
-          if(e.target.value === '') setRes([])
-        }}
-        type="text"
-        value={search}  type="text" placeholder="Search" aria-label="Search" />
-      <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
         </div>

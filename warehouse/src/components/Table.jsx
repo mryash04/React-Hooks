@@ -4,10 +4,15 @@ import {NavLink} from "react-router-dom";
 import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
+import { TagFacesTwoTone } from '@material-ui/icons';
 
 const Table = () => {
 
-  const[data, setData] = useState(Data)
+  const[data, setData] = useState(Data);
+
+  const[search, setSearch] = useState();
+
+  const[res, setRes] = useState([]);
 
   const deleteWareHouseData = (id) =>{
     const newItem = data.filter((item) => item.id !== id);
@@ -16,6 +21,24 @@ const Table = () => {
 
     return (
         <div className="table my-2">
+          <div className="form-group container">
+            <input className="form-control border-dark" type="text" placeholder="Enter warehouse name to search" 
+                  onChange={e => {
+                    const test = data.filter((data) => {
+                      return (data.name).toString().toLowerCase().includes(e.target.value.toString().toLowerCase())
+                    })
+            
+                      // uncomment line below and teams is logged as I want
+            
+                      console.log(test);
+            
+                      setData(test);
+                      setSearch(e.target.value);
+            
+                      setRes(test);
+                      if(e.target.value === '') setRes([])
+                    }} value={search}/>
+          </div>
             <div className="container">
             <table class="table table-striped table-bordered">
   <thead class="thead-dark">
