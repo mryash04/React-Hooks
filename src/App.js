@@ -8,11 +8,23 @@ import Todo from "./components/Todo";
 import ShortCircuitEval from "./components/ShortCircuitEval";
 import Reducer from "./components/Reducer";
 import ComA from "./components/Context/ComA";
+import Location from "./components/Location";
+import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import History from "./components/About";
 
 function App() {
   return (
     <div>
-      <ComA />
+      <Router>
+        <Switch>
+          <Route path="/about">
+            <History />
+          </Route>
+          <Route path="/">
+            <Location />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
