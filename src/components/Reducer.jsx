@@ -18,7 +18,7 @@ const Reducer = () => {
     const initialState = 0;
 
     const reducer = (state, action) =>{
-        console.log(action.type)
+        console.log(state, action.type)
         if(action.type == "Increment"){
             return state + 1;
         }else if(action.type == "Decrement"){

@@ -11,6 +11,8 @@ import ComA from "./components/Context/ComA";
 import Location from "./components/Location";
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import History from "./components/About";
+import ReducerAdvanced from "./components/ReducerAdvanced";
+import ShowHideComp from "./components/ShowHideComponent/ShowHideComp";
 
 function App() {
   return (
@@ -18,10 +20,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/about">
-            <History />
+            <Reducer />
           </Route>
           <Route path="/">
-            <Location />
+            <ShowHideComp />
           </Route>
         </Switch>
       </Router>
