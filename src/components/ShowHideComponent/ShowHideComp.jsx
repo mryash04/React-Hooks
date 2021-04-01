@@ -15,9 +15,21 @@ const btn = {
     cursor: "pointer",
 }
 
-const initialState = <CompA />
+const initialState = [<CompA />, <CompB />]
 
 const reducer = (state, action) =>{
+    console.log(state);
+    console.log(action.type);
+    switch(action.type){
+        case "componentA" :{
+            return state[0];
+        }
+        case "componentB" :{
+            return state[1];
+        }
+        default:
+            break;
+    }
 }
 
 const ShowHideComp = () => {
@@ -35,10 +47,11 @@ const ShowHideComp = () => {
             height:"100vh",
             backgroundColor:"orange"
         }}>
-            <button onClick={() => console.log("This is component a")} style={btn}>Component A</button>
-            <button onClick={() => console.log("This is component b")} style={btn}>Component B</button>
-            <CompA />
-            <CompB />
+            <button onClick={() => dispatch({type : "componentA"})} style={btn}>Component A</button>
+            <button onClick={() => dispatch({type : "componentB"})} style={btn}>Component B</button>
+            <div>
+                {state}
+            </div>
         </div>
     )
 }
